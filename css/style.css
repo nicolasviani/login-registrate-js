@@ -132,9 +132,9 @@
   .form {
     background-color: #fff;
     margin: auto;
-    width: 90%;
-    max-width: 400px;
-    padding: 4.5em 3em;
+    width: 50%;
+    max-width: 320px;
+    padding:1.7em 1.5em;
     border-radius: 10px;
     text-align: center; }
   
@@ -153,7 +153,7 @@
     margin-top: 3em;
     display: grid;
     gap: 1.5em; }
-  
+
   .form-grupo {
     position: relative;
     color: #5757577e; }
@@ -184,7 +184,7 @@
     cursor: pointer;
     position: absolute;
     top: 0;
-    left: 68px;
+    left: 52px;
     transition: transform .5s, color .3s; }
   
   .form_submit {
@@ -226,6 +226,8 @@
     border-radius: .25rem;
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
+    padding: .3em .1em;
+    margin: 4rem;
   }
 
 /**footer******/

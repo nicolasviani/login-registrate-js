@@ -5,7 +5,7 @@ const header = document.createElement("header");
 header.classList.add("header-container");
 header.innerHTML = `
                     <a href="https://wwwmambadesingcom.netlify.app/index.html" class="logo-container">
-                                <img src="assets/logoMB.png" alt="logo de la compania">
+                                <img src="assets/logos/logoMB.png" alt="logo de la compania">
                             </a>
                             <div class="nav-bottom-container">
                                 <nav class="navbar-bottom-container">
@@ -40,32 +40,76 @@ const main = document.createElement("main");
 main.classList.add("main-container");
 main.innerHTML = `
                 <form id="form" class="form">
-                    <h2 class="form-titulo">Inicia sesion</h2>
-                    <p class="form-subtitulo">¿Aun no tenes una cuenta?</p>
+                    <h2 class="form-titulo">Registrate</h2>
+                    <p class="form-subtitulo">Mamba Design...</p>
                     <div class="form-container">
                         <div class="form-grupo">
-                            <input type="text" id="name" class="form-input" placeholder="">
+                            <input type="text" name="nombre" class="form-input" placeholder="">
                             <label for="name" class="form-label">Nombre</label>
                             <span class="form-linea"></span>
                         </div>
                         <div class="form-grupo">
-                            <input type="email" id="user" class="form-input" placeholder="">
+                        <input type="text" name="apellido" class="form-input" placeholder="">
+                        <label for="name" class="form-label">Apellido</label>
+                        <span class="form-linea"></span>
+                    </div>
+                        <div class="form-grupo">
+                            <input type="email" name="email" class="form-input" placeholder="">
                             <label for="user" class="form-label">E-mail</label>
                             <span class="form-line"></span>
                         </div>
                         <div class="form-grupo">
-                            <input type="text" id="password" class="form-input" placeholder="">
+                            <input type="text" name="contarseña" class="form-input" placeholder="">
                             <label for="password" class="form-label">Contraseña</label>
                             <span class="form-line"></span>
                         </div>
-                        <div id="registrate" class="registrate"><a href="./registrate.html">Registrate</a>
-                        </div>
+                        <div class="form-grupo">
+                        <input type="text" name="confirma contraseña" class="form-input" placeholder="">
+                        <label for="password" class="form-label">Confirma contraseña</label>
+                        <span class="form-line"></span>
                     </div>
-                        <button class="boton" type ="submit"> Entrar </button>
+                    </div>
+                    <div class="form-container">
+                        <button id="registrate" class="boton"> Registrate </button>
+                    </div>
                 </form>
                 `
 
 contenedorGeneral.appendChild(main);
+
+const user = {
+    nombre: "",
+    apellido:"",
+    email:"",
+    contraseña:"",
+    confirmaContraseña:"",
+};
+
+const form = document.querySelector("#form");
+const inputs = document.querySelectorAll("inputs");
+const botonRegistrate = document.querySelector("#registrate");
+
+const felicitaciones = nombre =>{
+    form.innerHTML = `<h3 class="form-titulo"> Felicitaciones ${nombre} ya estas registrado en Mamba Design </h3>
+                        <div id="registrate" class="registrate">
+                            <button><a href="./login.html">Ir a login</a></button>
+                        </div>
+                        `
+};
+
+botonRegistrate.addEventListener("click", () =>{
+    const usuarios = user.push((personas) => user.nombre === personas.nombre && user.email === personas.email && user.contraseña === personas.contraseña);
+    if(usuarios !== null){
+        felicitaciones(usuarios.nombre);
+        localStorage.setItem("usuario",JSON.stringify(usuarios));
+    }
+});
+
+inputs.forEach((elemento) =>{
+    elemento.addEventListener("input", (event) =>{
+        user[event.target.name] = event.target.value;
+    });
+});
 
 
 

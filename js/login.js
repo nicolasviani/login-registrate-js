@@ -48,24 +48,21 @@ main.innerHTML = `
                     <p class="form-subtitulo">¿Aun no tenes una cuenta?</p>
                     <div class="form-container">
                         <div class="form-grupo">
-                            <input type="text" name="usuario" id="name" class="form-input" placeholder="">
+                            <input type="text" name="nombre" class="form-input" placeholder="">
                             <label for="name" class="form-label">Nombre</label>
                             <span class="form-linea"></span>
                         </div>
                         <div class="form-grupo">
-                            <input type="email" name="email" id="user" class="form-input" placeholder="">
+                            <input type="email" name="email" class="form-input" placeholder="">
                             <label for="user" class="form-label">E-mail</label>
                             <span class="form-line"></span>
                         </div>
                         <div class="form-grupo">
-                            <input type="text"  name="contraseña" id="password" class="form-input" placeholder="">
+                            <input type="text"  name="contraseña" class="form-input" placeholder="">
                             <label for="password" class="form-label">Contraseña</label>
                             <span class="form-line"></span>
-                            </div>
-                            <div id="registrate" class="registrate"><a href="./registrate.html">Registrate</a>
-                            </div>
-                    
-                        <div class="form-grupo">
+
+                        <div class="form-container">
                             <button id="enviar" class="boton"> Iniciar sesion </button>
                         </div>
                     </div>
@@ -106,22 +103,22 @@ const inputs = document.querySelectorAll("input");
 const botonIniciarSesion = document.querySelector("#enviar");
 
 const bienvenida = nombre =>{
-    bienvenida.innerHTML = `<h3 class="form"> Bienvenido ${nombre} a Mamba Desing... </h3> `
+    form.innerHTML = `<h3 class="form-titulo"> Bienvenido ${nombre} a Mamba Desing... </h3> `
 };
 
 const bienvenidaUndefined = () => {
-    bienvenidaUndefined.innerHTML = `<h3 class="form"> No estas registrado... </h3>
-                                    </div>
-                                    <div id="registrate" class="registrate"><a href="./registrate.html">Registrate</a>
-                                    </div>                              
-                                    `
+    form.innerHTML = `<h3 class="form-titulo"> No estas registrado... </h3>
+                        <div id="registrate" class="registrate">
+                            <button><a href="./registrate.html">Registrate</a></button>
+                        </div>                              
+                        `
 };
 
 botonIniciarSesion.addEventListener("click",() =>{
     const usuarios = baseDeDatos.find((personas) => user.nombre === personas.nombre && user.email === personas.email && user.contraseña === personas.contraseña);
     if(usuarios != undefined){
         bienvenida(usuarios.nombre);
-        localStorage.setItem("usuarios",JSON.stringify(usuarios));
+        localStorage.setItem("usuario",JSON.stringify(usuarios));
     }else{
         bienvenidaUndefined();
     }
