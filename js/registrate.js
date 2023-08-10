@@ -97,13 +97,28 @@ const felicitaciones = nombre =>{
                         `
 };
 
-botonRegistrate.addEventListener("click", () =>{
-    const usuarios = user.push((personas) => user.nombre === personas.nombre && user.email === personas.email && user.contraseña === personas.contraseña);
-    if(usuarios !== null){
-        felicitaciones(usuarios.nombre);
+
+form.addEventListener("submit", (event) =>{
+    event.preventDefault();
+
+    let usuarioEncontrado = false;
+
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    usuarios.forEach(persona =>{
+        if(persona.nombre === user.nombre && persona.email === user.email && persona.contraseña === user.contraseña){
+            usuarioEncontrado = true;
+            return
+        }
+    });
+
+    if(!usuarioEncontrado){
+        usuarios.push(user);
+        felicitaciones(user.nombre);
         localStorage.setItem("usuario",JSON.stringify(usuarios));
-    }
+    };
 });
+
 
 inputs.forEach((elemento) =>{
     elemento.addEventListener("input", (event) =>{
